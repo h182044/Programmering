@@ -51,15 +51,21 @@ public class ShowProfile extends EasyGraphics {
 		int timescaling = Integer.parseInt(getText("Tidsskalering"));
 
 		setColor(0, 0, 255);
+		int y = ybase;
+		int bredde = 2;
+		int luft = 3;
 
 		// elevations tabellen innholder alle høydedata
 		for (int i = 0; i < elevations.length; i++) {
-
-			int x1, y1, x2, y2; // koordinator søylen 
-
 			// TODO
 			// OPPGAVE - START
-
+			int høgde = (int) (elevations[i]);
+			int x = 25 + (luft * i);
+			if(høgde < 0) {
+				høgde = 1;
+			}
+			fillRectangle(x, y - høgde, bredde, høgde);
+			
 			// regn ut koordinator for søylen / linjen
 			// (x1,y1) er startpunkt for søylen (linjen)
 			// (x2,y2) er slutt punkt.

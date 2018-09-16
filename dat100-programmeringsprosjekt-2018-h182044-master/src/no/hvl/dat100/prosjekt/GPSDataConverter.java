@@ -33,7 +33,10 @@ public class GPSDataConverter {
 		
 		// TODO
 		// OPPGAVE - START
-		
+		hr = Integer.parseInt(timestr.substring(TIME_STARTINDEX, TIME_STARTINDEX+2));
+		min = Integer.parseInt(timestr.substring(TIME_STARTINDEX+3, TIME_STARTINDEX+5));
+		sec = Integer.parseInt(timestr.substring(TIME_STARTINDEX+6, TIME_STARTINDEX+8));
+		secs = (hr * 60 * 60) + (min * 60) + sec;
 		// OPPGAVE - SLUTT
 		return secs;
 	}
@@ -55,7 +58,13 @@ public class GPSDataConverter {
 		
 		// TODO
 		// OPPGAVE - START
-		
+		for(int i = 0; i < n; i++) {
+			times[i] = toSeconds(timesstr[i]);
+			latitudes[i] = Double.parseDouble(latitudesstr[i]);
+			longitudes[i] = Double.parseDouble(longitudesstr[i]);
+			elevations[i] = Double.parseDouble(elevationsstr[i]);
+			
+		}
 		// Hint:
 		// iterer igjennom alle gps punkter (hint: bruk en for-løkke)
 		// konverter hver inngang gps datapunkt 
@@ -64,7 +73,6 @@ public class GPSDataConverter {
 		// - lengdegrad til double 
 		// - høyde til double
         // sett konvertert data inn på rett plass i den rette tabellen
-		
 		// END
 		// OPPGAVE - SLUTT ;
 	}
@@ -72,11 +80,13 @@ public class GPSDataConverter {
 	// skriv ut konvertert GPS data op formatet:
 	// sekunder (breddegrad,lengdegrad) høyde
 	public void print() {
-	
+		int lengde = times.length;
 		System.out.println("Konvertert GPS Data");
 		// TODO
 		// OPPGAVE - START
-		
+		for (int i = 0; i < lengde; i++) {
+			System.out.println(times[i] + " (" + latitudes[i] + "," + longitudes[i]+") " + elevations[i]);
+		}
 		
 		// OPPGAVE - SLUTT
 	}

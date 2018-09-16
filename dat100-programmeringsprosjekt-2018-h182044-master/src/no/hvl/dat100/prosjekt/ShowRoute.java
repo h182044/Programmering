@@ -14,7 +14,6 @@ public class ShowRoute extends EasyGraphics {
 	private static int MARGIN = 50;
 	private static int MAPXSIZE = 800;
 	private static int MAPYSIZE = 800;
-
 	private static GPSComputer gpscomputer;
 
 	public ShowRoute() {
@@ -60,11 +59,13 @@ public class ShowRoute extends EasyGraphics {
 	// y-pixels per breddegrad
 	
 	public double ystep() {
-	
-		double ystep = 1.0;
 		
 		// TODO
 		// OPPGAVE - START
+		double maxlat = GPSUtils.findMax(latitudes);
+		double minLat = GPSUtils.findMin(latitudes);
+		
+		double ystep = MAPYSIZE / (Math.abs(maxlat - minLat));
 		
 		// OPPGAVE SLUTT
 		
@@ -90,7 +91,13 @@ public class ShowRoute extends EasyGraphics {
 			
 			// må finne punkt nr i fra latitues og longitudes tabellene
 			// og sette x og y til der de skal tegnes som et punkt i vinduet
-			
+			setColor(0, 0, 255); // blue;
+
+			// make a circle in the first point
+			 x = MARGIN + (int) ((longitudes[i] - minlon) * xstep);
+			 y = ybase - (int) ((latitudes[i] - minlat) * ystep);
+
+			fillCircle(x, y, 7);
 			// OPPGAVE SLUTT
 	}
 		
@@ -100,12 +107,20 @@ public class ShowRoute extends EasyGraphics {
 	public void showStatistics() {
 
 		int TEXTDISTANCE = 20;
-
+		String tid         ="Total Time       :   "+ GPSUtils.printTime( gpscomputer.totalTime());
+		String distanse    ="Total Distance   :"+ GPSUtils.printDouble((gpscomputer.totalDistance()/1000))+ " Km";
+		String elevation   ="Total Elevation  :"+ GPSUtils.printDouble(gpscomputer.totalElevation())+ " M";
+		String maxspeed    ="Max Speed        :"+ GPSUtils.printDouble(gpscomputer.maxSpeed())+ " Km/t";
+		String avaragespeed="Avarage Speed   :"+ GPSUtils.printDouble(gpscomputer.averageSpeed())+" Km/t";
 		setColor(0,0,0);
-		setFont("Courier",12);
-		
+		setFont("Courier",16);
 		// TODO:
 		// OPPGAVE - START
+		drawString(tid, MARGIN, MARGIN);
+		drawString(distanse, MARGIN, MARGIN+(TEXTDISTANCE*1));
+		drawString(elevation, MARGIN, MARGIN+(TEXTDISTANCE*2));
+		drawString(maxspeed, MARGIN, MARGIN+(TEXTDISTANCE*3));
+		drawString(avaragespeed, MARGIN, MARGIN+(TEXTDISTANCE*4));
 				
 		// OPPGAVE - SLUTT;
 	}

@@ -7,7 +7,7 @@ public class GPSDataReaderWriter {
 	// entry separator in CSV files
 	private static String SEP_STR = ",";
 
-	private static  String GPSDATA_FORMAT = "time,lat,lon,elevation,accuracy,bearing,speed,satellites,"
+	private static String GPSDATA_FORMAT = "time,lat,lon,elevation,accuracy,bearing,speed,satellites,"
 			+ "provider,hdop,vdop,pdop,geoidheight,ageofdgpsdata,dgpsid,activity,battery,annotation";
 
 	// location of GPS data files in this Eclipse project
@@ -104,10 +104,10 @@ public class GPSDataReaderWriter {
 			// tabell med lengdegrader fra gps data punktene
 			String[] longitudes = gpsdata.getLongitudes();
 
-			// tabell med høyder fra gps data punktene
+			// tabell med hÃ¸yder fra gps data punktene
 			String[] elevations = gpsdata.getElevations();
 
-			// første linje skal inneholde antallet av gps punkter
+			// fÃ¸rste linje skal inneholde antallet av gps punkter
 			int n = times.length;
 			pw.println(n);
 
@@ -141,10 +141,10 @@ public class GPSDataReaderWriter {
 		// tabell med lengdegrader fra gps data punktene
 		String[] longitudes = gpsdata.getLongitudes();
 
-		// tabell med høyder fra gps data punktene
+		// tabell med hÃ¸yder fra gps data punktene
 		String[] elevations = gpsdata.getElevations();
 
-		// første linje skal inneholde antallet av gps punkter
+		// fÃ¸rste linje skal inneholde antallet av gps punkter
 		int n = times.length;
 		System.out.println(n);
 
@@ -153,27 +153,31 @@ public class GPSDataReaderWriter {
 
 		// TODO
 		// OPPGAVE - START
-		
-		// skriv ut også breddegrad (latitude), longitude(lengdegrad) og høyde (elevation) for hvert punkt
-		
+		// skriv ut også breddegrad (latitude), longitude(lengdegrad) og hÃ¸yde
+		// (elevation) for hvert punkt
+
 		for (int i = 0; i < n; i++) {
-			System.out.println(times[i] + SEP_STR);
+			System.out.println(times[i] + SEP_STR + latitudes[i] + SEP_STR + longitudes[i] +SEP_STR+ elevations[i]);
 		}
+		
+		
+		
 
 		// OPPGAVE - SLUTT;
 	}
 
-	// kjør programmet via Run for å teste utskrift av GPS data 
+	// kjør programmet via Run for å teste utskrift av GPS data
 	public static void main(String[] args) {
 
 		String testfile = "short";
-		// fjern kommentar for å teste med ulike GPS data filer
+		// fjern kommentar for Ã¥ teste med ulike GPS data filer
 		// String testfile = "medium";
 		// String testfile = "long";
-		// String testfile = "vm";
-		
+		//String testfile = "vm";
+
 		GPSData gpsdata = readGPSFile(testfile);
 
 		printGPSData(gpsdata);
+		
 	}
 }

@@ -50,12 +50,32 @@ public class ShowSpeed extends EasyGraphics {
 		int timescaling = Integer.parseInt(getText("Tidsskalering"));
 		
 		// hent hastigheter på de ulike deler av ruten
+		
 		double[] speeds = gpscomputer.speeds();
+		int x = 0;
+		int x2= 25; 
+		int y1 = ybase; 
+		int y2 = 10;
 		
 		// TODO:
+		setColor(0, 0, 255);
+		int y = ybase;
+		int bredde = 2;
+		int luft = 3;
+		for(int i = 0; i < speeds.length; i++) {
+			int høgde = (int) (speeds[i]);
+			x = 0 + (luft * i);
+			if(høgde < 0) {
+				høgde = 1;
+			}
+			fillRectangle(x, y - høgde, bredde, høgde);
+		}
 		
-		// OPPGAVE - START		
-		
-		// OPPGAVE - SLUTT
+		setColor(50,205,50);
+		for(int i = 0; i < speeds.length; i++) {
+			int fart = (int) gpscomputer.averageSpeed();
+			drawLine(x,(ybase-fart),10*i,(ybase-fart));
+			
+	}
 	}
 }
