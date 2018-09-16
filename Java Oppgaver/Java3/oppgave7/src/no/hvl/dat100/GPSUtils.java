@@ -11,12 +11,6 @@ public class GPSUtils {
 		return radius;
 	}
 
-	/*
-	 * Implemer en metode som beregninger gjennomsnittsastighet i km/t om man
-	 * beveger seg fra punktet gitt ved (latitude1,longitude1) til punktet
-	 * (latitude2,longitude2) på det antall sekunder som er gitt med parameteren
-	 * secs
-	 */
 	static double speed(int secs, double lat1, double long1, double lat2, double long2) {
 		return long2;
 
