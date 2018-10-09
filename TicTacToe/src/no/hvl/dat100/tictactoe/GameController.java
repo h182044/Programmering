@@ -73,31 +73,24 @@ public class GameController {
 	}
 
 	private boolean checkHorizontal(int y, char player) {
-
-		boolean allequal = true;
-
 		// TicTacToe.SIZE gir størrelse på brettet
-
-		// TODO - START
-
-		// TODO - SLUTT
-
-		// return allequal;
-		return false; // REMOVE ME
+		boolean allequal = true;
+		for (int i = 0; i < TicTacToe.SIZE; i++) {
+			if (board[i][y] != player) {
+				allequal = false;
+			}
+		}
+		return allequal;
 	}
 
 	private boolean checkVertical(int x, char player) {
-
 		boolean allequal = true;
-
-		// TicTacToe.SIZE gir størrelse på brettet
-
-		// TODO - START
-
-		// TODO - SLUTT
-
-		// return allequal;
-		return false; // REMOVE ME
+		for (int i = 0; i < TicTacToe.SIZE; i++) {
+			if (board[x][i] != player) {
+				allequal = false;
+			}
+		}
+		return allequal;
 	}
 
 	private boolean checkDiagonals(char player) {
@@ -105,20 +98,18 @@ public class GameController {
 		boolean allequal_lr = true; // for checking left to right diagonal
 		boolean allequal_rl = true; // for checking right to left diagonal
 
-		// TicTacToe.SIZE gir størrelse på brettet
-
-		// TODO - START
-		
-		// sjekk om alle karakterer/innganger på første diagonalen i
-		// 2-dim tabellen board har karakteren player
-
-		// sjekk om alle karakterer/innganger på andre diagonalen i
-		// 2-dim tabellen board har karakteren player
-
-		// TODO - SLUTT
-
-		// return allequal_lr || allequal_rl;
-		return false; // REMOVE ME
+		for (int i = 0; i < TicTacToe.SIZE; i++) {
+			if (board[i][i] != player) {
+				allequal_lr = false;
+			}
+		}
+		int r = 2;
+		for(int i = 0; i < TicTacToe.SIZE; i++) {
+			if(board[i][r] != player) {
+				allequal_rl = false;
+			}
+			r--;
+		}
+		return allequal_lr|| allequal_rl;
 	}
-
-}
+	}
